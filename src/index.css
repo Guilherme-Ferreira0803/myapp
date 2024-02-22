@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  height: 100vh;
+  width: 100vw;
+  background-color: #E3E3E3F5;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+p{
+  color:#E3E3E3F5;
+  font-family: 'Poppins';
+  font-size:0.75rem ;
+}

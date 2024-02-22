@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import LocationIcon from '../../assets/icons/Location.svg';
 import {obterDistanciaMetros} from "../../services/obterDistanciaMetros.services";
 import ConfirmarDistanciaPopup from '../Popup/ConfirmacaoDistanciaPopup';
+import UsarModal from "../../utils/hooks/useModal"
+import Modal from '../Modal/Modal'
 let teste = 0;
 
 
 
 const LocationPopup: React.FC = () => {
 
- const[distancia, setDistancia] = useState(180);
-
+  const[distancia, setDistancia] = useState(180);
+  const {aberto, alternar, fecharModal} = UsarModal();
   const [showPopup, setShowPopup] = useState(true);
   const [showPopupConfirmacao, setShowPopupConfirmacao] = useState(false);
 
@@ -20,9 +22,10 @@ const LocationPopup: React.FC = () => {
     //const distanciaMetros = await obterDistanciaMetros(1,new Date('21/2/2024'),latitude,longitude);
     
       if (distancia >= 150){
-        setShowPopupConfirmacao(true);
-        teste = teste + 1;
-        setDistancia(distancia - 10) ;
+        //setShowPopupConfirmacao(true);
+       // teste = teste + 1;
+        //setDistancia(distancia - 10) ;
+        alternar();
         console.log(distancia);
         
       }else{
@@ -118,8 +121,12 @@ const LocationPopup: React.FC = () => {
           </div>
         </div>
       </div>
-           <ConfirmarDistanciaPopup teste={teste}/>
-        
+          
+           <Modal
+            aberto={aberto}
+            alternar={alternar}
+            modulo={<ConfirmarDistanciaPopup fecharModal={fecharModal} />}
+      />
     </>
 );
 };
